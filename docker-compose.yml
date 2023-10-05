@@ -1,0 +1,17 @@
+# Use root/example as user/password credentials
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysqlnest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 5432:3306
+volumes:
+  mysql_data:
