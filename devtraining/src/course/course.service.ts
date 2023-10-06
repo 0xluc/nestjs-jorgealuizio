@@ -17,7 +17,7 @@ export class CourseService {
     private readonly courseRepository: Repository<Course>,
   ) {}
 
-  findAll() {
+  findAll(): Promise<Course[]> {
     return this.courseRepository.find();
   }
   findOne(id: string) {
