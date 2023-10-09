@@ -3,20 +3,23 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CoursesModule } from './courses/courses.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Course } from './courses/entities/course.entity';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AppConfig, DatabaseConfig } from './config';
 
 @Module({
   imports: [
     CoursesModule,
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 5432,
-      username: 'root',
-      password: '',
-      database: 'devtraining',
-      autoLoadEntities: true,
-      synchronize: true,
+    ConfigModule.forRoot({
+        isGlobal: true,
+        cache:true,
+        load: [AppConfig, DatabaseConfig]
+    }),
+    TypeOrmModule.forRootAsync({
+        imports: [ConfigModule],
+        useFactory: (configService: ConfigService) => ({
+            ...configService.get('database'),
+        }),
+        inject: [ConfigService]
     }),
   ],
   controllers: [AppController],

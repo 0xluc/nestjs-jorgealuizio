@@ -10,7 +10,7 @@ import {
 import { CourseService } from 'src/course/course.service';
 import { CreateCourseDto } from './dto/create-course.dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto/update-course.dto';
-import { Course } from './entities/course.entity';
+import { Course } from '../entities/course.entity';
 
 @Controller('courses')
 export class CoursesController {
