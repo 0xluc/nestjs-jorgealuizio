@@ -25,3 +25,17 @@ services:
       MYSQL_ROOT_PASSWORD: ''
       MYSQL_ALLOW_EMPTY_PASSWORD: true
       MYSQL_DATABASE: 'devtraining'
+  dbtest:
+    build: .docker/mysql
+    container_name: cusosnestjs-dbtest
+    restart: always
+    command: --lower_case_table_names=2
+    tty: true
+    ports:
+      - '5433:3306'
+    volumes:
+      - ./docker/dbdatatest:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+      MYSQL_DATABASE: 'devtrainingtest'
