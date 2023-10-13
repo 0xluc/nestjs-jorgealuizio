@@ -15,7 +15,7 @@ services:
     build: .docker/mysql
     container_name: cusosnestjs-db
     restart: always
-    command: --lower_case_table_names=2
+    command: --lower_case_table_names=0
     tty: true
     ports:
       - '3306:3306'
@@ -29,7 +29,7 @@ services:
     build: .docker/mysql
     container_name: cusosnestjs-dbtest
     restart: always
-    command: --lower_case_table_names=2
+    command: --lower_case_table_names=0
     tty: true
     ports:
       - '5433:3306'
